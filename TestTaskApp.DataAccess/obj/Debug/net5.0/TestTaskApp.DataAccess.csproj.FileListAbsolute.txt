@@ -1,0 +1,14 @@
+C:\Users\timur\source\repos\TestTaskApp\TestTaskApp.DataAccess\obj\Debug\net5.0\TestTaskApp.DataAccess.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\timur\source\repos\TestTaskApp\TestTaskApp.DataAccess\obj\Debug\net5.0\TestTaskApp.DataAccess.AssemblyInfoInputs.cache
+C:\Users\timur\source\repos\TestTaskApp\TestTaskApp.DataAccess\obj\Debug\net5.0\TestTaskApp.DataAccess.AssemblyInfo.cs
+C:\Users\timur\source\repos\TestTaskApp\TestTaskApp.DataAccess\obj\Debug\net5.0\TestTaskApp.DataAccess.csproj.CoreCompileInputs.cache
+C:\Users\timur\source\repos\TestTaskApp\TestTaskApp.DataAccess\bin\Debug\net5.0\TestTaskApp.DataAccess.deps.json
+C:\Users\timur\source\repos\TestTaskApp\TestTaskApp.DataAccess\bin\Debug\net5.0\TestTaskApp.DataAccess.runtimeconfig.json
+C:\Users\timur\source\repos\TestTaskApp\TestTaskApp.DataAccess\bin\Debug\net5.0\TestTaskApp.DataAccess.runtimeconfig.dev.json
+C:\Users\timur\source\repos\TestTaskApp\TestTaskApp.DataAccess\bin\Debug\net5.0\TestTaskApp.DataAccess.dll
+C:\Users\timur\source\repos\TestTaskApp\TestTaskApp.DataAccess\bin\Debug\net5.0\ref\TestTaskApp.DataAccess.dll
+C:\Users\timur\source\repos\TestTaskApp\TestTaskApp.DataAccess\bin\Debug\net5.0\TestTaskApp.DataAccess.pdb
+C:\Users\timur\source\repos\TestTaskApp\TestTaskApp.DataAccess\obj\Debug\net5.0\TestTaskApp.DataAccess.dll
+C:\Users\timur\source\repos\TestTaskApp\TestTaskApp.DataAccess\obj\Debug\net5.0\ref\TestTaskApp.DataAccess.dll
+C:\Users\timur\source\repos\TestTaskApp\TestTaskApp.DataAccess\obj\Debug\net5.0\TestTaskApp.DataAccess.pdb
+C:\Users\timur\source\repos\TestTaskApp\TestTaskApp.DataAccess\obj\Debug\net5.0\TestTaskApp.DataAccess.genruntimeconfig.cache
