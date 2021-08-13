@@ -17,12 +17,12 @@ namespace TestTaskApp.DataAccess.Repositories.Implementations
         public UserRepository(TaskAppContext context) =>
             _context = context;
 
-        public async Task<bool> AddAsync(User user)
+        public async Task AddAsync(User user)
         {   
             if (user != null)
             {
                 await _context.AddAsync(user);
-                return await SaveAsync();
+                await _context.SaveChangesAsync();
             }
             throw new CustomError("some error occured while adding");
         }
@@ -30,7 +30,5 @@ namespace TestTaskApp.DataAccess.Repositories.Implementations
         public async Task<List<User>> GetAllAsync() =>
             await _context.Users.ToListAsync();
 
-        public async Task<bool> SaveAsync() => 
-            await _context.SaveChangesAsync() > 0;
     }
 }

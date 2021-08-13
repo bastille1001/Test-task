@@ -10,6 +10,5 @@ namespace TestTaskApp.Services.Model
     {
         public DateTime RegistrationDt { get; set; }
         public DateTime LastActivityDt { get; set; }
-
     }
 }

@@ -8,8 +8,7 @@ namespace TestTaskApp.DataAccess.Repositories.Interfaces
 {
     public interface IUserRepository
     {
-        Task<bool> SaveAsync();
-        Task<bool> AddAsync(User user);
+        Task AddAsync(User user);
         Task<List<User>> GetAllAsync();
     }
 }
