@@ -18,6 +18,15 @@ namespace TestTaskApp.Controllers
         public UserController(IUserService userService) =>
             this.userService = userService;
 
+        [HttpGet("getall")]
+        public async Task<ActionResult<List<User>>> GetAll()
+        {
+            var users = await userService.GetAllAsync();
+            if (users.Count > 0)
+                return Ok(users);
+            return NoContent();
+        }
+
         [HttpPost("save")]
         public async Task<ActionResult> Save([FromBody] UserDto user)
         {

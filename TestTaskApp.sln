@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31205.134
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestTaskApp", "TestTaskApp\TestTaskApp.csproj", "{3FDB7C02-6213-4E02-AB49-650DC9C3D955}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestTaskApp", "TestTaskApp\TestTaskApp.csproj", "{3FDB7C02-6213-4E02-AB49-650DC9C3D955}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestTaskApp.DataAccess", "TestTaskApp.DataAccess\TestTaskApp.DataAccess.csproj", "{5AC122A6-D798-437A-A698-D9321005F4D7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestTaskApp.DataAccess", "TestTaskApp.DataAccess\TestTaskApp.DataAccess.csproj", "{5AC122A6-D798-437A-A698-D9321005F4D7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestTaskApp.Services", "TestTaskApp.Services\TestTaskApp.Services.csproj", "{9B61E293-1DF4-4564-9370-BB7C53C8B0DC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestTaskApp.Services", "TestTaskApp.Services\TestTaskApp.Services.csproj", "{9B61E293-1DF4-4564-9370-BB7C53C8B0DC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

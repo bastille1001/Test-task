@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 using TestTaskApp.DataAccess;
 using TestTaskApp.DataAccess.Repositories.Implementations;
 using TestTaskApp.DataAccess.Repositories.Interfaces;
-using TestTaskApp.ExceptionHandler;
+using TestTaskApp.Middlewares;
 using TestTaskApp.Services.Services.Implementations;
 using TestTaskApp.Services.Services.Interfaces;
 

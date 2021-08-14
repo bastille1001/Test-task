@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,13 +29,15 @@ namespace TestTaskApp.Services.Services.Implementations
             return rollingRetentionXDay;
         }
 
+        public async Task<List<User>> GetAllAsync() =>
+            await dbRepository.GetAllAsync();
+
         public async Task SaveAsync(UserDto userDto)
         {
-            User user = new()
-            {
-                RegistrationDt = userDto.RegistrationDt,
-                LastActivityDt = userDto.LastActivityDt
-            };
+            MapperConfiguration config = new(config => config.CreateMap<UserDto, User>());
+            Mapper mapper = new(config);
+            var user = mapper.Map<User>(userDto);
+
             await dbRepository.AddAsync(user);
         }
     }

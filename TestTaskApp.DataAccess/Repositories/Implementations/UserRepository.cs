@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TestTaskApp.DataAccess.Repositories.Interfaces;
-using TestTaskApp.ExceptionHandler;
+using TestTaskApp.Errors;
 
 namespace TestTaskApp.DataAccess.Repositories.Implementations
 {
@@ -28,7 +28,7 @@ namespace TestTaskApp.DataAccess.Repositories.Implementations
         }
 
         public async Task<List<User>> GetAllAsync() =>
-            await _context.Users.ToListAsync();
+            await _context.Users.AsNoTracking().ToListAsync();
 
     }
 }

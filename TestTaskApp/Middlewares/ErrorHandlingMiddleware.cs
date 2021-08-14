@@ -1,5 +1,4 @@
-﻿
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
@@ -8,8 +7,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using TestTaskApp.Errors;
 
-namespace TestTaskApp.ExceptionHandler
+namespace TestTaskApp.Middlewares
 {
     public class ErrorHandlingMiddleware
     {
