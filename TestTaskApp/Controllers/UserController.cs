@@ -26,16 +26,19 @@ namespace TestTaskApp.Controllers
                 return Ok(users);
             return NoContent();
         }
-
+        
         [HttpPost("save")]
         public async Task<ActionResult> Save([FromBody] UserDto user)
         {
+            if (!ModelState.IsValid)
+                return BadRequest();
+
             await userService.SaveAsync(user);
             return Ok("succesfully added");
         }
 
         [HttpGet("calculate")]
-        public async Task<ActionResult<double>> Calculate(int xDay)
+        public async Task<ActionResult<double>> Calculate(int xDay = 7)
         {
             double result = await userService.CalculateAsync(xDay);
             return Ok(result);

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace TestTaskApp.Errors
+namespace TestTaskApp.DataAccess.Errors
 {
     public class CustomError : Exception
     {

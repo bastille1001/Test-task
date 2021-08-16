@@ -14,13 +14,19 @@ namespace TestTaskApp.DataAccess
         [Column("user_id")]
         public int UserId { get; set; }
         
-        [Required]
         [Column("registration_dt")]
         public DateTime RegistrationDt { get; set; }
         
-        [Required]
         [Column("last_activity_dt")]
         public DateTime LastActivityDt { get; set; }
 
+        [NotMapped]
+        public double LifeTime { get => (LastActivityDt - RegistrationDt).TotalDays; }
+
+        public bool ReturnedUsersDatesCount(int xDay) =>
+            (LastActivityDt - RegistrationDt).TotalDays >= xDay;
+
+        public bool DownloadedUsersDatesCount(int xDay) =>
+            DateTime.Now.AddDays(-xDay) >= RegistrationDt;
     }
 }

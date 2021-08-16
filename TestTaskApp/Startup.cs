@@ -16,8 +16,10 @@ using TestTaskApp.DataAccess;
 using TestTaskApp.DataAccess.Repositories.Implementations;
 using TestTaskApp.DataAccess.Repositories.Interfaces;
 using TestTaskApp.Middlewares;
+using TestTaskApp.Services.Model;
 using TestTaskApp.Services.Services.Implementations;
 using TestTaskApp.Services.Services.Interfaces;
+
 
 namespace TestTaskApp
 {
@@ -31,6 +33,21 @@ namespace TestTaskApp
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll",
+                    builder =>
+                    {
+                        builder
+                        .AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader();
+                    });
+            });
+            services.AddAutoMapper(config =>
+            {
+                config.CreateMap<UserDto, User>();
+            });
             services.AddDbContext<TaskAppContext>(opt => opt.UseNpgsql(Configuration.GetConnectionString("Default")));
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -50,6 +67,7 @@ namespace TestTaskApp
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "TestTaskApp v1"));
             }
+            app.UseCors("AllowAll");
             app.UseMiddleware(typeof(ErrorHandlingMiddleware));
 
             app.UseHttpsRedirection();

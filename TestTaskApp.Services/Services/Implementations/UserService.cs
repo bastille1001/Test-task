@@ -1,10 +1,13 @@
-﻿using AutoMapper;
+﻿
+using AutoMapper;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TestTaskApp.DataAccess;
+using TestTaskApp.DataAccess.Errors;
 using TestTaskApp.DataAccess.Repositories;
 using TestTaskApp.DataAccess.Repositories.Interfaces;
 using TestTaskApp.Services.Model;
@@ -14,19 +17,26 @@ namespace TestTaskApp.Services.Services.Implementations
 {
     public class UserService : IUserService
     {
+        
         private readonly IUserRepository dbRepository;
-        public UserService(IUserRepository dbRepository) =>
-            this.dbRepository = dbRepository;
+        private readonly IMapper mapper;
 
-        public async Task<double> CalculateAsync(int xDay)
+        public UserService(IUserRepository dbRepository,
+            IMapper mapper)
         {
+            this.dbRepository = dbRepository;
+            this.mapper = mapper;
+        }
+
+        public async Task<double> CalculateAsync(int xDay = 7)
+        {
+            if (xDay < 1 || xDay > 31) throw new CustomError("must be in 1-31 range");
             List<User> users = await dbRepository.GetAllAsync();
             
-            int returnedUsersDatesCount = users.Where(x => x.LastActivityDt.Day >= xDay).Count();
-            int downloadedUsersDatesCount = users.Where(x => x.RegistrationDt.Day <= xDay).Count();
+            double returnedUsersDatesCount = users.Where(u => u.ReturnedUsersDatesCount(xDay)).Count();
+            double downloadedUsersDatesCount = users.Where(u => u.DownloadedUsersDatesCount(xDay)).Count();
 
-            double rollingRetentionXDay = (returnedUsersDatesCount / downloadedUsersDatesCount) * 100;
-            return rollingRetentionXDay;
+            return (returnedUsersDatesCount / downloadedUsersDatesCount) * 100;
         }
 
         public async Task<List<User>> GetAllAsync() =>
@@ -34,10 +44,7 @@ namespace TestTaskApp.Services.Services.Implementations
 
         public async Task SaveAsync(UserDto userDto)
         {
-            MapperConfiguration config = new(config => config.CreateMap<UserDto, User>());
-            Mapper mapper = new(config);
             var user = mapper.Map<User>(userDto);
-
             await dbRepository.AddAsync(user);
         }
     }
