@@ -38,9 +38,9 @@ namespace TestTaskApp.Controllers
         }
 
         [HttpGet("calculate")]
-        public async Task<ActionResult<double>> Calculate(int xDay = 7)
+        public async Task<ActionResult<double[]>> Calculate(int xDay = 7)
         {
-            double result = await userService.CalculateAsync(xDay);
+            double[] result = await userService.CalculateAsync(xDay);
             return Ok(result);
         }
     }

@@ -11,7 +11,7 @@ namespace TestTaskApp.Services.Services.Interfaces
     public interface IUserService
     {
         Task<List<User>> GetAllAsync();
-        Task<double> CalculateAsync(int xDay);
+        Task<double[]> CalculateAsync(int xDay);
         Task SaveAsync(UserDto user);
     }
 }

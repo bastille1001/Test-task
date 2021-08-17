@@ -28,15 +28,28 @@ namespace TestTaskApp.Services.Services.Implementations
             this.mapper = mapper;
         }
 
-        public async Task<double> CalculateAsync(int xDay = 7)
+        public async Task<double[]> CalculateAsync(int xDay = 7)
         {
-            if (xDay < 1 || xDay > 31) throw new CustomError("must be in 1-31 range");
             List<User> users = await dbRepository.GetAllAsync();
-            
-            double returnedUsersDatesCount = users.Where(u => u.ReturnedUsersDatesCount(xDay)).Count();
-            double downloadedUsersDatesCount = users.Where(u => u.DownloadedUsersDatesCount(xDay)).Count();
 
-            return (returnedUsersDatesCount / downloadedUsersDatesCount) * 100;
+            double returnedUsersDatesCount = 0;
+            double downloadedUsersDatesCount = 0;
+            double percentage = 0;
+
+            double[] rollingRetention = new double[xDay];
+            
+            for (int i = 0; i < rollingRetention.Length; i++)
+            {
+                returnedUsersDatesCount = users.Where(u => u.ReturnedUsersDatesCount(i)).Count();
+                downloadedUsersDatesCount = users.Where(u => u.DownloadedUsersDatesCount(i)).Count();
+                percentage = (returnedUsersDatesCount / downloadedUsersDatesCount) * 100;
+
+                if (downloadedUsersDatesCount == 0) percentage = 0;
+                
+                rollingRetention[i] = percentage;
+            }
+
+            return rollingRetention;
         }
 
         public async Task<List<User>> GetAllAsync() =>
@@ -44,6 +57,8 @@ namespace TestTaskApp.Services.Services.Implementations
 
         public async Task SaveAsync(UserDto userDto)
         {
+            if (userDto.LastActivityDt < userDto.RegistrationDt)
+                throw new CustomError("registration date can`t be greater than last activity date");
             var user = mapper.Map<User>(userDto);
             await dbRepository.AddAsync(user);
         }
