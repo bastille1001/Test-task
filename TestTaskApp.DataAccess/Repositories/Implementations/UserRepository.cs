@@ -29,9 +29,7 @@ namespace TestTaskApp.DataAccess.Repositories.Implementations
             {
                 throw new CustomError("Something went wrong");
             }
-            
-
-        }
+        } 
 
         public async Task<List<User>> GetAllAsync() => await _context.Users.AsNoTracking().ToListAsync();
     }

@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Newtonsoft.Json;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TestTaskApp.DataAccess
 {
@@ -21,6 +18,7 @@ namespace TestTaskApp.DataAccess
         public DateTime LastActivityDt { get; set; }
 
         [NotMapped]
+        [JsonIgnore]
         public double LifeTime { get => (LastActivityDt - RegistrationDt).TotalDays; }
 
         public bool ReturnedUsersDatesCount(int xDay) =>
