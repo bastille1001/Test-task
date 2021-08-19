@@ -17,7 +17,7 @@ namespace TestTaskApp.Services.Services.Implementations
 {
     public class UserService : IUserService
     {
-        
+
         private readonly IUserRepository dbRepository;
         private readonly IMapper mapper;
 
@@ -28,7 +28,7 @@ namespace TestTaskApp.Services.Services.Implementations
             this.mapper = mapper;
         }
 
-        public async Task<double[]> CalculateAsync(int xDay = 7)
+        public async Task<double[]> CalculateAsync(int xDay)
         {
             List<User> users = await dbRepository.GetAllAsync();
 
@@ -37,15 +37,17 @@ namespace TestTaskApp.Services.Services.Implementations
             double percentage = 0;
 
             double[] rollingRetention = new double[xDay];
-            
-            for (int i = 0; i < rollingRetention.Length; i++)
+
+            for (int i = 0; i < xDay; i++)
             {
                 returnedUsersDatesCount = users.Where(u => u.ReturnedUsersDatesCount(i)).Count();
                 downloadedUsersDatesCount = users.Where(u => u.DownloadedUsersDatesCount(i)).Count();
-                percentage = (returnedUsersDatesCount / downloadedUsersDatesCount) * 100;
 
-                if (downloadedUsersDatesCount == 0) percentage = 0;
-                
+                if (downloadedUsersDatesCount != 0)
+                    percentage = (returnedUsersDatesCount / downloadedUsersDatesCount) * 100;
+                else
+                    percentage = 0;
+
                 rollingRetention[i] = percentage;
             }
 

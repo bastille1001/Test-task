@@ -33,7 +33,6 @@ namespace TestTaskApp.Middlewares
             }
             catch (Exception ex)
             {
-
                 await HandleExceptionAsync(context, ex);
             }
         }

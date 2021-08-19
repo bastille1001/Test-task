@@ -1,8 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using System;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using TestTaskApp.DataAccess;
 using TestTaskApp.Services.Model;
@@ -18,7 +15,7 @@ namespace TestTaskApp.Controllers
         public UserController(IUserService userService) =>
             this.userService = userService;
 
-        [HttpGet("getall")]
+        [HttpGet]
         public async Task<ActionResult<List<User>>> GetAll()
         {
             var users = await userService.GetAllAsync();
@@ -27,14 +24,14 @@ namespace TestTaskApp.Controllers
             return NoContent();
         }
         
-        [HttpPost("save")]
+        [HttpPost]
         public async Task<ActionResult> Save([FromBody] UserDto user)
         {
             if (!ModelState.IsValid)
                 return BadRequest();
 
             await userService.SaveAsync(user);
-            return Ok("succesfully added");
+            return Ok(user);
         }
 
         [HttpGet("calculate")]

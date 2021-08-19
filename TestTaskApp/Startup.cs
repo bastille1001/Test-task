@@ -1,17 +1,11 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using TestTaskApp.DataAccess;
 using TestTaskApp.DataAccess.Repositories.Implementations;
 using TestTaskApp.DataAccess.Repositories.Interfaces;
@@ -48,7 +42,7 @@ namespace TestTaskApp
             {
                 config.CreateMap<UserDto, User>();
             });
-            services.AddDbContext<TaskAppContext>(opt => opt.UseNpgsql(Configuration.GetConnectionString("Default")));
+            services.AddDbContext<TaskAppContext>(opt => opt.UseNpgsql(Configuration.GetConnectionString("ELEPHANTSQL_URL")));
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

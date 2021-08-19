@@ -19,17 +19,20 @@ namespace TestTaskApp.DataAccess.Repositories.Implementations
             _context = context;
 
         public async Task AddAsync(User user)
-        {   
-            if (user != null)
+        {
+            try
             {
                 await _context.AddAsync(user);
                 await _context.SaveChangesAsync();
             }
-            throw new CustomError("some error occured while adding");
+            catch (Exception)
+            {
+                throw new CustomError("Something went wrong");
+            }
+            
+
         }
 
-        public async Task<List<User>> GetAllAsync() =>
-            await _context.Users.AsNoTracking().ToListAsync();
-
+        public async Task<List<User>> GetAllAsync() => await _context.Users.AsNoTracking().ToListAsync();
     }
 }
