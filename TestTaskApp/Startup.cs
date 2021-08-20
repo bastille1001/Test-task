@@ -63,7 +63,6 @@ namespace TestTaskApp
             app.UseCors("AllowAll");
             app.UseMiddleware(typeof(ErrorHandlingMiddleware));
 
-            app.UseHttpsRedirection();
 
             app.UseRouting();
 
