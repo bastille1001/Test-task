@@ -22,9 +22,9 @@ namespace TestTaskApp.DataAccess
         public double LifeTime { get => (LastActivityDt - RegistrationDt).TotalDays; }
 
         public bool ReturnedUsersDatesCount(int xDay) =>
-            (LastActivityDt - RegistrationDt).TotalDays >= xDay;
+            LastActivityDt >= DateTime.Now.AddDays(-xDay);
 
         public bool DownloadedUsersDatesCount(int xDay) =>
-            DateTime.Now.AddDays(-xDay) >= RegistrationDt;
+            RegistrationDt <= DateTime.Now.AddDays(-xDay);
     }
 }

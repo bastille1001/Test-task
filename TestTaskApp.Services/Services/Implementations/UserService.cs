@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -27,14 +28,12 @@ namespace TestTaskApp.Services.Services.Implementations
         {
             List<User> users = await dbRepository.GetAllAsync();
 
-            double returnedUsersDatesCount = 0;
-            double downloadedUsersDatesCount = 0;
-            double percentage = 0;
+            double returnedUsersDatesCount = 0, downloadedUsersDatesCount = 0, percentage = 0;
 
             List<double> rollingRetention = new();
             
 
-            for (int i = 1; i <= xDay; i++)
+            for (int i = xDay; i >= 1; i--)
             {
                 returnedUsersDatesCount = users.Where(u => u.ReturnedUsersDatesCount(i)).Count();
                 downloadedUsersDatesCount = users.Where(u => u.DownloadedUsersDatesCount(i)).Count();
@@ -46,7 +45,7 @@ namespace TestTaskApp.Services.Services.Implementations
 
                 rollingRetention.Add(percentage);
             }
-
+            
             return rollingRetention;
         }
 
