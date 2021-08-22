@@ -32,5 +32,13 @@ namespace TestTaskApp.DataAccess.Repositories.Implementations
         } 
 
         public async Task<List<User>> GetAllAsync() => await _context.Users.AsNoTracking().ToListAsync();
+
+        public async Task DeleteById(int id)
+        {
+            User user = await _context.Users.AsNoTracking().FirstAsync(x => x.UserId == id);
+            if (user == null) throw new CustomError("user not found");
+            _context.Remove(user);
+            await _context.SaveChangesAsync();
+        }
     }
 }

@@ -13,5 +13,6 @@ namespace TestTaskApp.Services.Services.Interfaces
         Task<List<User>> GetAllAsync();
         Task<List<double>> CalculateAsync(int xDay);
         Task SaveAsync(UserDto user);
+        Task DeleteById(int id);
     }
 }

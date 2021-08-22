@@ -7,5 +7,6 @@ namespace TestTaskApp.DataAccess.Repositories.Interfaces
     {
         Task AddAsync(User user);
         Task<List<User>> GetAllAsync();
+        Task DeleteById(int id);
     }
 }

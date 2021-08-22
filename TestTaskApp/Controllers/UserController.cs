@@ -34,6 +34,13 @@ namespace TestTaskApp.Controllers
             return Ok(user);
         }
 
+        [HttpDelete]
+        public async Task<ActionResult> Delete(int id)
+        {
+            await userService.DeleteById(id);
+            return Ok();
+        }
+
         [HttpGet("calculate")]
         public async Task<ActionResult<List<double>>> Calculate(int xDay = 7)
         {

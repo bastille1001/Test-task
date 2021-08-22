@@ -59,5 +59,7 @@ namespace TestTaskApp.Services.Services.Implementations
             var user = mapper.Map<User>(userDto);
             await dbRepository.AddAsync(user);
         }
+
+        public async Task DeleteById(int id) => await dbRepository.DeleteById(id);
     }
 }
